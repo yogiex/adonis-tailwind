@@ -27,6 +27,12 @@ export default class Book extends BaseModel {
   @column()
   public cover_image: string;
 
+  @column()
+  public categoryId: number;
+
+  // @manyToMany(() => Category)
+  // public categoryId: ManyToMany<typeof Category>; 
+
   @hasMany(() => Category)
   public category: HasMany<typeof Category>
 }

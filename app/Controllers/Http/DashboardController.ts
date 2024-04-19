@@ -2,6 +2,7 @@ import { Application } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Book from 'App/Models/Book'
+import Category from 'App/Models/Category'
 export default class DashboardController {
     async index({view}: HttpContextContract){
         const html = await view.render('dashboard/index')
@@ -31,7 +32,6 @@ export default class DashboardController {
         const html = await view.render('dashboard/addBook', {
             categories : categories
         })
-        console.log(categories)
         return html
     }
     async addBook({request,response}: HttpContextContract){
@@ -39,19 +39,15 @@ export default class DashboardController {
         const coverImage = request.file('cover_image')
         await coverImage?.move('./public')
         const file = coverImage?.filePath
-        
-        // console.log(file)
-        
-        const data = await Book.create({
-            cover_image: `http://localhost:3000/${file}`,
+        const cid = Category.find(category)
+        const datas = await Book.create({
+            title: title,
             author: author,
             publisher: publisher,
-            title: title
+            categoryId: category
         })
-        await data.related('category').create({
-            id:category
-        })
-        console.log(data)
+        
+        console.log(datas)
         return response.redirect().back()
     }
 
