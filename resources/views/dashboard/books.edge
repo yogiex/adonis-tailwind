@@ -1,0 +1,88 @@
+@include('dashboard/partials/navbar')
+<div class="flex">
+  <div class="h-[calc(100vh)]">
+    @include('dashboard/partials/sidebar')
+  </div>
+  
+  @section('name')
+  <div class="my-5 mx-5 flex-1 w-64">
+    <main>
+      {{--  breadcrumbs  --}}
+      <div class="bg-gray-200 rounded-md my-2 flex">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li class="ml-10 font-bold text-2xl"><a href="">Admin</a></li>
+            <li class="ml-3 font-bold text-2xl"><a href="">{{ request.request.url.split('/')[2] }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {{--  end of breadcrumb  --}}
+      <div class="flex justify-end">
+        <div class="">
+          <a href="addbook">
+            <button class="btn btn-ghost btn-outline btn-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              Add Book                  
+          </button>
+
+          </a>
+        </div>
+      </div>
+      {{--  start of table  --}}
+      <div class="mx-5">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>
+                    <label>
+                      <input type="checkbox" class="checkbox" />
+                    </label>
+                  </th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Role Id</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    @each(user in users)
+                    <tr class="hover">
+                        <th>
+                            <label>
+                              <input type="checkbox" class="checkbox" />
+                            </label>
+                          </th>
+                          <td>{{user.email}}</td>
+                          <td>{{user.username}}</td>
+                          <td>{{user.role_id}}</td>
+                          <td>
+                            <button class="btn btn-outline btn-accent"><a href="">Edit</a></button>
+                            <button class="btn btn-outline btn-error">Delete</button> 
+                          </td>
+                    </tr>
+                    @endeach
+                </tr>
+              </tbody>
+        </table>
+      </div>
+      <div class="pl-4 pr-4">
+        <div class="flex justify-center items-center my-56">
+            <div class="join">
+                <input class="join-item btn btn-square" type="radio" name="options" aria-label="1" checked />
+                <input class="join-item btn btn-square" type="radio" name="options" aria-label="2" />
+                <input class="join-item btn btn-square" type="radio" name="options" aria-label="3" />
+                <input class="join-item btn btn-square" type="radio" name="options" aria-label="4" />
+              </div>
+        </div>
+      </div>
+      {{--  end of table  --}}
+    </main>
+  </div>
+    
+  @endsection
+</div>
+
+@include('dashboard/partials/footer')

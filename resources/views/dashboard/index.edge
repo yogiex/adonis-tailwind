@@ -1,0 +1,26 @@
+@include('dashboard/partials/navbar')
+<div class="flex">
+  <div class="h-[calc(100vh)]">
+    @include('dashboard/partials/sidebar')
+  </div>
+  
+  @section('name')
+  <div class="my-5 mx-5 flex-1 w-64">
+    <main>
+      
+      <div class="bg-gray-200 rounded-md my-2">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li class="ml-10 font-bold text-2xl"><a href="">Admin</a></li>
+            <li class="ml-3 font-bold text-2xl"><a href="">{{ request.request.url.split('/')[2] }}</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+    
+  @endsection
+</div>
+
+@include('dashboard/partials/footer')

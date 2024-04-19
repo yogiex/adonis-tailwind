@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+    <div class="navbar bg-indigo-600 shadow shadow-2xl">
+        <div class="flex-1">
+            <a class="btn btn-ghost text-xl" href="">DaisyUI</a>
+        </div>
+        <div class="flex-non gap-2">
+            <div class="form-control">
+                <input type="search" name="" id="" class="input input-bordered w-24 md:w-auto">
+            </div>
+            <div class="dropdown dropdown-end">
+                <div class="btn btn-ghost btn-circle avatar">
+                    <div tabindex="0" role="button" class="w-10 rounded-full">
+                        <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    </div>
+                </div>
+                    <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        <li>
+                            <a href="" class="justify-between">
+                                profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a href="">settings</a></li>
+                        <li><a href="{{route('auth.logout')}}">logout</a></li>
+                    </ul>
+            </div>
+        </div>
+    </div>

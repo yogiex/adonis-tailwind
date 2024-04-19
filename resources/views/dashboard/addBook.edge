@@ -1,0 +1,79 @@
+@include('dashboard/partials/navbar')
+<div class="flex">
+  <div class="h-[calc(100vh)]">
+    @include('dashboard/partials/sidebar')
+  </div>
+  
+  @section('name')
+  <div class="my-5 mx-5 flex-1 w-64">
+    <main>
+      
+      <div class="bg-gray-200 rounded-md my-2">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li class="ml-10 font-bold text-2xl"><a href="">Admin</a></li>
+            <li class="ml-3 font-bold text-2xl"><a href="">{{ request.request.url.split('/')[2] }}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="">
+        <form action="{{ route('book.insert' )}}" method="POST" enctype="multipart/form-data">
+          <div class="columns-2 mt-10">
+            <div class="ml-56">
+              <label class="block text-2xl font-bold leading-6 text-gray-900" for="">Title</label>
+            </div>
+            <div class="mt-2">
+              <input name="title" class="block w-56 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" placeholder="input book title">
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="columns-2 mt-10">
+            <div class="ml-56">
+              <label class="block text-2xl font-bold leading-6 text-gray-900" for="">Category</label>
+            </div>
+            <select name="category" id="" class="select w-56 select-bordered">
+              <option value="" disabled selected>Pick Category</option>
+              @each(category in categories)
+                <option value="{{category.id}}">{{category.name}}</option>
+              @end
+            </select>
+          </div>
+          <div class="divider"></div>
+          <div class="columns-2 mt-10">
+            <div class="ml-56">
+              <label class="block text-2xl font-bold leading-6 text-gray-900" for="">Author</label>
+            </div>
+            <div class="mt-2">
+              <input name="author" class="block w-56 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" placeholder="input book author">
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="columns-2 mt-10">
+            <div class="ml-56">
+              <label class="block text-2xl font-bold leading-6 text-gray-900" for="">Publisher</label>
+            </div>
+            <div class="mt-2">
+              <input name="publisher" class="block w-56 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" placeholder="input book publisher">
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="columns-2 mt-10">
+            <div class="ml-56">
+              <label class="block text-2xl font-bold leading-6 text-gray-900" for="">Cover Image</label>
+            </div>
+            <div class="mt-2">
+              <input name="cover_image" type="file" class="file-input file-input-bordered w-full max-w-xs" />
+            </div>
+          </div>
+            <div class="flex justify-center items-center mt-6">
+              <button type="submit" class="flex w-50 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Insert Book</button>
+            </div>
+        </form>
+      </div>
+    </main>
+  </div>
+    
+  @endsection
+</div>
+
+@include('dashboard/partials/footer')

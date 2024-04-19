@@ -1,0 +1,77 @@
+@include('dashboard/partials/navbar')
+<div class="flex">
+  <div class="h-[calc(100vh)]">
+    @include('dashboard/partials/sidebar')
+  </div>
+  
+  @section('name')
+  <div class="my-5 mx-5 flex-1 w-64">
+    <main>
+      
+      <div class="bg-gray-200 rounded-md my-2">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li class="ml-10 font-bold text-2xl"><a href="">Admin</a></li>
+            <li class="ml-3 font-bold text-2xl"><a href="/dashboard/category?page=1">{{ request.request.url.split('/')[2].split('?')[0]  }}</a></li>
+            <li class="ml-3 font-bold text-2xl"><a href="">{{ request.request.url.split('/')[2].split('?')[1].replace('=',' ') }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {{--  end of breadcumbs  --}}
+      {{--  start of table  --}}
+      <div class="mx-5">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>
+                    <label>
+                      <input type="checkbox" class="checkbox" />
+                    </label>
+                  </th>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    @each(category in categories)
+                    <tr class="hover">
+                        <th>
+                            <label>
+                              <input type="checkbox" class="checkbox" />
+                            </label>
+                          </th>
+                          <td>{{category.id}}</td>
+                          <td>{{category.name}}</td>
+                          <td>
+                            <button class="btn btn-outline btn-accent"><a href="">Edit</a></button>
+                            <button class="btn btn-outline btn-error">Delete</button> 
+                          </td>
+                    </tr>
+                    @endeach
+                </tr>
+              </tbody>
+        </table>
+      </div>
+      {{--  start of pagination  --}}
+      <div class="pl-4 pr-4">
+        <div class="flex justify-center items-center my-56">
+              <div class="join">
+                @each(anchor in categories.getUrlsForRange(1, categories.lastPage))
+                  <a href="{{ anchor.url }}" class="join-item btn btn-square">
+                    {{ anchor.page }}
+                  </a>
+                @endeach
+              </div>
+        </div>
+        {{--  end of pagination  --}}
+      </div>
+      {{--  end of table  --}}
+    </main>
+  </div>
+    
+  @endsection
+</div>
+
+@include('dashboard/partials/footer')
